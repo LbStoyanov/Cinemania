@@ -1,3 +1,4 @@
+import 'package:cinemania/config/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -10,6 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
+      theme: AppTheme().getTheme(),
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Material App Bar'),
