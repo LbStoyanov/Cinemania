@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme().getTheme(),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Material App Bar'),
+          title: const Text('Material App Bara'),
         ),
         body: const Center(
           child: Text('Hello World'),
