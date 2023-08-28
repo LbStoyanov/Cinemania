@@ -1,3 +1,5 @@
+import 'package:cinemania/infrastructure/datasources/mappers/movie_mapper.dart';
+import 'package:cinemania/infrastructure/datasources/models/moviedb/moviedb_response.dart';
 import 'package:dio/dio.dart';
 import 'package:cinemania/config/constants/environment.dart';
 import 'package:cinemania/domain/datasources/movies_datasource.dart';
@@ -14,8 +16,14 @@ class MoviedbDatasource extends MoviesDatasource {
   @override
   Future<List<Movie>> getNowPlaying({int page = 1}) async {
     final response = await dio.get('/movie/now_playing');
-    final List<Movie> movies = [];
 
-    return [];
+    final movieDBResponse = MovieDbResponse.fromJson(response.data);
+
+    final List<Movie> movies = movieDBResponse.results
+        .where((moviedb) => moviedb.posterPath != 'no-poster')
+        .map((m) => MovieMapper.movieDBToEntity(m))
+        .toList();
+
+    return movies;
   }
 }
