@@ -1,5 +1,5 @@
-import 'package:cinemania/infrastructure/datasources/mappers/movie_mapper.dart';
-import 'package:cinemania/infrastructure/datasources/models/moviedb/moviedb_response.dart';
+import 'package:cinemania/infrastructure/mappers/movie_mapper.dart';
+import 'package:cinemania/infrastructure/models/moviedb/moviedb_response.dart';
 import 'package:dio/dio.dart';
 import 'package:cinemania/config/constants/environment.dart';
 import 'package:cinemania/domain/datasources/movies_datasource.dart';
