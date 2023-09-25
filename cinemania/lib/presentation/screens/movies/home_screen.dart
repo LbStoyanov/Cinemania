@@ -1,5 +1,6 @@
-import 'package:cinemania/presentation/providers/movies/movies_providers.dart';
 import 'package:flutter/material.dart';
+import 'package:cinemania/presentation/widgets/widgets.dart';
+import 'package:cinemania/presentation/providers/movies/movies_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -28,21 +29,29 @@ class _HomeViewState extends ConsumerState<_HomeView> {
   @override
   void initState() {
     super.initState();
+    // ignore: unused_local_variable
     final movies = ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
   }
 
   @override
   Widget build(BuildContext context) {
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
-    return ListView.builder(
-      itemCount: nowPlayingMovies.length,
-      itemBuilder: (context, index) {
-        final movie = nowPlayingMovies[index];
+    return Column(
+      children: [
+        const CustomAppbar(),
+        Expanded(
+          child: ListView.builder(
+            itemCount: nowPlayingMovies.length,
+            itemBuilder: (context, index) {
+              final movie = nowPlayingMovies[index];
 
-        return ListTile(
-          title: Text(movie.title),
-        );
-      },
+              return ListTile(
+                title: Text(movie.title),
+              );
+            },
+          ),
+        )
+      ],
     );
   }
 }
