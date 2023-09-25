@@ -8,6 +8,7 @@ class CustomAppbar extends StatelessWidget {
     final colors = Theme.of(context).colorScheme;
 
     return SafeArea(
+      bottom: false,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: SizedBox(
@@ -24,6 +25,7 @@ class CustomAppbar extends StatelessWidget {
                       color: colors.secondary,
                       fontSize: 15,
                       fontWeight: FontWeight.bold)),
+              const Spacer(),
               IconButton(
                 onPressed: () {},
                 icon: const Icon(Icons.search),
