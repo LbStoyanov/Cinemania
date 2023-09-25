@@ -20,7 +20,7 @@ class CustomAppbar extends StatelessWidget {
                 color: colors.primary,
               ),
               const SizedBox(width: 10),
-              Text('CineMania',
+              Text('КиноМания',
                   style: TextStyle(
                       color: colors.secondary,
                       fontSize: 15,
