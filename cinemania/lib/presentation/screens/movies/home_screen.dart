@@ -1,7 +1,9 @@
+import 'package:cinemania/presentation/widgets/shared/custom_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:cinemania/presentation/widgets/widgets.dart';
-import 'package:cinemania/presentation/providers/movies/movies_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../providers/providers.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -11,6 +13,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      bottomNavigationBar: CustomBottomNavigationBar(),
       body: Center(
         child: _HomeView(),
       ),
@@ -35,11 +38,12 @@ class _HomeViewState extends ConsumerState<_HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
+    //final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
+    final slideshowMovies = ref.watch(moviesSlideshowProvider);
     return Column(
       children: [
         const CustomAppbar(),
-        MoviesSlideshow(movies: nowPlayingMovies)
+        MoviesSlideshow(movies: slideshowMovies)
       ],
     );
   }
