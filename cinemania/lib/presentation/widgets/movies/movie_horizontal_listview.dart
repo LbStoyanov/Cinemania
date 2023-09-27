@@ -64,7 +64,7 @@ class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
             itemCount: widget.movies.length,
             itemBuilder: (context, index) {
               final movie = widget.movies[index];
-              return _Slide(movie: movie);
+              return FadeInDown(child: _Slide(movie: movie));
             },
           ))
         ],
