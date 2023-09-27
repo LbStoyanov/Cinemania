@@ -34,13 +34,14 @@ class _HomeViewState extends ConsumerState<_HomeView> {
   @override
   void initState() {
     super.initState();
-    // ignore: unused_local_variable
-    final movies = ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+    ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+    ref.read(popularMoviesProvider.notifier).loadNextPage();
   }
 
   @override
   Widget build(BuildContext context) {
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
+    final popularMovies = ref.watch(popularMoviesProvider);
     final slideshowMovies = ref.watch(moviesSlideshowProvider);
     return CustomScrollView(slivers: [
       /*  const SliverAppBar(
@@ -73,8 +74,16 @@ class _HomeViewState extends ConsumerState<_HomeView> {
                 },
               ),
               MovieHorizontalListview(
-                movies: nowPlayingMovies,
+                movies: popularMovies,
                 title: 'Популярни',
+                subTitle: 'Този месец',
+                loadNextPage: () {
+                  ref.read(popularMoviesProvider.notifier).loadNextPage();
+                },
+              ),
+              MovieHorizontalListview(
+                movies: nowPlayingMovies,
+                title: 'Най-висок рейтинг',
                 subTitle: 'Този месец',
                 loadNextPage: () {
                   ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
