@@ -1,0 +1,1 @@
+Add a logic to format the raiting of every movie slide
