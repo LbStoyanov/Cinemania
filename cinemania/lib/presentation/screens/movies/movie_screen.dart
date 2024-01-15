@@ -46,7 +46,7 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
               (context, index) => _MovieDetails(
                 movie: movie,
               ),
-              childCount: 1, //Can be set multiple chils
+              childCount: 1, //Can be set multiple childs
             ),
           ),
         ],
