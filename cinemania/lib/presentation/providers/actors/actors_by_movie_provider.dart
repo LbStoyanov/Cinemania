@@ -1,7 +1,6 @@
 import 'package:cinemania/domain/entities/actor.dart';
 import 'package:cinemania/presentation/providers/actors/actors_repository_provider.dart';
 
-import 'package:cinemania/presentation/providers/movies/movies_repository_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final actorsByMovieProvider =
@@ -26,6 +25,7 @@ class ActorsByMovieNotifier extends StateNotifier<Map<String, List<Actor>>> {
     }
 
     final List<Actor> actors = await getActors(movieId);
+    
 
     state = {...state, movieId: actors};
   }

@@ -1,4 +1,5 @@
 import 'package:cinemania/domain/entities/movie.dart';
+import 'package:cinemania/presentation/providers/actors/actors_by_movie_provider.dart';
 import 'package:cinemania/presentation/providers/movies/movie_details_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,6 +21,7 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
     super.initState();
 
     ref.read(movieDetailsProvider.notifier).loadMovie(widget.movieId);
+    ref.read(actorsByMovieProvider.notifier).loadActors(widget.movieId);
   }
 
   @override
@@ -121,11 +123,27 @@ class _MovieDetails extends StatelessWidget {
             ],
           ),
         ),
+        _ActorsByMovie(movieId: movie.id.toString()),
         const SizedBox(
           height: 80,
         )
       ],
     );
+  }
+}
+
+class _ActorsByMovie extends ConsumerWidget {
+  const _ActorsByMovie({required this.movieId});
+
+  final String movieId;
+
+  @override
+  Widget build(BuildContext context, ref) {
+    final actorsByMovie = ref.watch(actorsByMovieProvider);
+
+    
+
+    return const Placeholder();
   }
 }
 
@@ -147,14 +165,14 @@ class _CustomSliverAppBar extends StatelessWidget {
           horizontal: 10,
           vertical: 5,
         ),
-        title: Text(
-          movie.title,
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-          textAlign: TextAlign.start,
-        ),
+        // title: Text(
+        //   movie.title,
+        //   style: const TextStyle(
+        //     fontSize: 20,
+        //     fontWeight: FontWeight.bold,
+        //   ),
+        //   textAlign: TextAlign.start,
+        // ),
         background: Stack(
           children: [
             SizedBox.expand(

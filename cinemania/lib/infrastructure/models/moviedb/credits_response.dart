@@ -1,5 +1,3 @@
-
-
 class CreditsResponse {
   final int id;
   final List<Cast> cast;
@@ -71,7 +69,7 @@ class Cast {
         character: json["character"],
         creditId: json["credit_id"],
         order: json["order"],
-        department: json["department"]!,
+        department: json["department"],
         job: json["job"],
       );
 
@@ -92,4 +90,3 @@ class Cast {
         "job": job,
       };
 }
-
