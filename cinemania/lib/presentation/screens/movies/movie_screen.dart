@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:cinemania/domain/entities/movie.dart';
 import 'package:cinemania/presentation/providers/actors/actors_by_movie_provider.dart';
 import 'package:cinemania/presentation/providers/movies/movie_details_provider.dart';
@@ -161,13 +162,15 @@ class _ActorsByMovie extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 //Actor Photo
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Image.network(
-                    actor.profilePath,
-                    height: 180,
-                    width: 120,
-                    fit: BoxFit.cover,
+                FadeInDown(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Image.network(
+                      actor.profilePath,
+                      height: 180,
+                      width: 120,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 //Actor Name
@@ -242,6 +245,13 @@ class _CustomSliverAppBar extends StatelessWidget {
               child: Image.network(
                 movie.posterPath,
                 fit: BoxFit.cover,
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress != null) {
+                    return const SizedBox();
+                  }
+
+                  return FadeInDownBig(child: child);
+                },
               ),
             ),
             const SizedBox.expand(
