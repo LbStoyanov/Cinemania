@@ -104,7 +104,7 @@ class _MovieItem extends StatelessWidget {
                         width: 5,
                       ),
                       Text(
-                        movie.voteAverage.toStringAsFixed(2),
+                        movie.voteAverage.toStringAsFixed(1),
                         style: textStyle.bodyMedium!
                             .copyWith(color: Colors.yellow.shade700),
                       ),
