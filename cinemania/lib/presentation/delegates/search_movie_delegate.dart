@@ -10,8 +10,10 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
   final SearchMovieCallback searchMovies;
   StreamController<List<Movie>> debouncedMovie = StreamController.broadcast();
   Timer? _debounceTimer;
+  List<Movie> initialMovies;
 
-  SearchMovieDelegate({required this.searchMovies});
+  SearchMovieDelegate(
+      {required this.searchMovies, required this.initialMovies});
 
   void clearStreams() {
     debouncedMovie.close();
@@ -29,6 +31,7 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
       }
 
       final movies = await searchMovies(query);
+      initialMovies = movies;
       debouncedMovie.add(movies);
     });
   }
@@ -61,13 +64,8 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
 
   @override
   Widget buildResults(BuildContext context) {
-    return const Text('buildResults');
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    _onQueryChange(query);
     return StreamBuilder(
+      initialData: initialMovies,
       stream: debouncedMovie.stream,
       builder: (context, snapshot) {
         final movies = snapshot.data ?? [];
@@ -77,7 +75,32 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
             final movie = movies[index];
             return _MovieItem(
               movie: movie,
-              onMovieSelected: (context,movie) {
+              onMovieSelected: (context, movie) {
+                clearStreams();
+                close(context, movie);
+              },
+            );
+          },
+        );
+      },
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    _onQueryChange(query);
+    return StreamBuilder(
+      initialData: initialMovies,
+      stream: debouncedMovie.stream,
+      builder: (context, snapshot) {
+        final movies = snapshot.data ?? [];
+        return ListView.builder(
+          itemCount: movies.length,
+          itemBuilder: (context, index) {
+            final movie = movies[index];
+            return _MovieItem(
+              movie: movie,
+              onMovieSelected: (context, movie) {
                 clearStreams();
                 close(context, movie);
               },

@@ -1,7 +1,7 @@
 import 'package:cinemania/domain/entities/movie.dart';
 
 import 'package:cinemania/presentation/delegates/search_movie_delegate.dart';
-import 'package:cinemania/presentation/providers/movies/movies_repository_provider.dart';
+
 import 'package:cinemania/presentation/providers/search/search_movies_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -35,12 +35,13 @@ class CustomAppbar extends ConsumerWidget {
               const Spacer(),
               IconButton(
                 onPressed: () {
-                  final searchMovies = ref.watch(searchedMoviesProvider);
+                  final searchedMovies = ref.watch(searchedMoviesProvider);
                   final searchQuery = ref.read(searchQueryProvider);
                   showSearch<Movie?>(
                     query: searchQuery,
                     context: context,
                     delegate: SearchMovieDelegate(
+                    initialMovies: searchedMovies,
                         searchMovies: ref
                             .read(searchedMoviesProvider.notifier)
                             .searchMoviesByQuery),
