@@ -23,7 +23,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
       context.go('/');
       return;
     } else if (index == 1) {
-      context.go('/');
+      context.go('/categories');
       return;
     } else {
       context.go('/favorites');
@@ -41,7 +41,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
         BottomNavigationBarItem(
             icon: Icon(Icons.home_max_outlined), label: 'Home'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.movie_creation_rounded), label: 'Movies'),
+            icon: Icon(Icons.movie_creation_rounded), label: 'Categories'),
         BottomNavigationBarItem(
             icon: Icon(Icons.favorite_border_rounded), label: 'Favorites'),
       ],
