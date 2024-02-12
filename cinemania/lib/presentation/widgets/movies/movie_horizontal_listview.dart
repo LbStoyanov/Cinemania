@@ -139,7 +139,7 @@ class _Slide extends StatelessWidget {
                 ),
                 const SizedBox(width: 5),
                 Text(
-                  '${movie.voteAverage}',
+                  movie.voteAverage.toStringAsFixed(1),
                   style: const TextStyle(
                     //color: Colors.red,
                     fontSize: 16,
