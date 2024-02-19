@@ -226,6 +226,23 @@ class _CustomSliverAppBar extends StatelessWidget {
       backgroundColor: Colors.lightBlue[400],
       expandedHeight: size.height * 0.7,
       foregroundColor: Colors.white,
+      actions: [
+        IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.favorite_border_rounded,
+              size: 35,
+              color: Color.fromARGB(255, 233, 19, 4),
+            )
+
+            //IF ADDED TO FAVORITES
+            /* icon: const Icon(
+            Icons.favorite_rounded,
+            color: Colors.red,
+            size: 35,
+          ), */
+            )
+      ],
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: const EdgeInsets.symmetric(
           horizontal: 8,
